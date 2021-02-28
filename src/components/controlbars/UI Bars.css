@@ -1,0 +1,100 @@
+.Toolbar{
+    text-align: center;
+    text-decoration: none;
+    background-color: #ecf0f1;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+
+.Toolbar button {
+    text-align: center;
+    width: 100%;
+    margin: 1vh;
+    outline: none;
+    text-decoration: none;
+    background-color: #ecf0f1;
+    border: none;
+    color: Black;
+    padding: 15px 32px;
+    display: inline-block;
+    font-size: 1.5em;
+}
+
+.Toolbar button:hover{
+    transition-duration: 0.5s;
+    background-color: #bdc3c7;
+}
+
+
+#start {
+    background-color:#e74c3c;
+    border-radius:28px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size: 1.5em;
+    padding:10px 76px;
+    text-decoration:none;
+}
+#start:hover {
+    background-color:#c0392b;
+}
+#start:active {
+    position:relative;
+    top:2px;
+}
+
+
+
+
+/* Place the navbar at the bottom of the page, and make it stick */
+#bottombar {
+    background-color: #ecf0f1;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+
+#bottombar button{
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    background-color: #ecf0f1;
+    border: none;
+    color: Black;
+    padding: 15px 32px;
+    display: inline-block;
+    font-size: 1.5em;
+    border-radius:28px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#bottombar div{
+    display: flex;
+    justify-content: center;
+}
+/*
+https://www.w3schools.com/howto/howto_js_bottom_nav_responsive.asp
+ */
+
+/* Change the color of links on hover */
+#bottombar button:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a green background color to the active link */
+button:active {
+    position:relative;
+    top:2px;
+}

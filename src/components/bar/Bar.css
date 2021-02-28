@@ -1,0 +1,21 @@
+.arraybar{
+    bottom: 0;
+}
+
+.Numeric-Bar{
+    background-color: red;
+}
+
+.numerics{
+    color: red;
+    display: flex;
+    text-align: center;
+    bottom: 0;
+}
+
+/* CSS for each array bar*/
+.arraybar {
+    margin: 2px;
+    width: 0.5vw;
+    display: inline-block;
+}
