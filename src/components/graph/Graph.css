@@ -1,0 +1,143 @@
+p{
+    text-align: center;
+}
+
+
+/* Container for array area */
+/*
+.array-container{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+*/
+
+.sortingArea{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    display: flex;
+    width: 100%;
+}
+
+.algorithm{
+    justify-content: center;
+    padding: 10px;
+    margin: 0 auto;
+    width: auto;
+    height: 100%;
+}
+
+
+
+.bars-wrapper{
+    margin-bottom: 100px;
+}
+
+.bars{
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+}
+
+.rectangle{
+    width: 200px;
+    height: 50px;
+    background: red;
+}
+
+/*
+.control-button{
+    border-radius: 25%;
+    padding: 1px;
+    margin: 10px;
+    text-decoration: none;
+    border: none;
+    width: 20px;
+    float: right;
+    color: white;
+}
+*/
+
+
+
+.control-button {
+    background-color:#c0392b;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+
+    margin-right: 10px;
+    padding:10px 10px;
+    text-decoration:none;
+    float: right
+}
+.control-button:hover {
+    background-color:#e74c3c;
+}
+
+
+.close-button {
+    background-color:#c0392b;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:23px;
+    padding:10px 10px;
+    text-decoration:none;
+    float: right
+}
+.close-button:hover {
+    background-color:#e74c3c;
+}
+.button:active {
+    position:relative;
+    top:1px;
+}
+
+
+
+.Algorithm-Button {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-family: Trebuchet MS;
+    font-size: 20px;
+    font-weight: 900;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    background-color: #95a5a6;
+    -webkit-box-shadow: 4px 6px 11px 0 #7F8C8D;
+    -moz-box-shadow: 4px 6px 11px 0 #7F8C8D;
+    box-shadow: 4px 6px 11px 0 #7F8C8D;
+    border: solid #000000 1px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    margin: 1vh;
+    outline: none;
+}
+
+.Algorithm-Button:hover {
+    background: #ecf0f1;
+    transition-duration: 1s;
+    color: black;
+}
+
+.Algorithm-Button-Wrapper{
+    display: flex;
+    justify-content: center;
+}

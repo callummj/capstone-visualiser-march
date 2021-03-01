@@ -54,6 +54,8 @@ export default function App() {
       algorithm.steps = getSteps(algorithm.title, data) //Gets the new steps for the each algorithm with the new data (if there are some already being displayed)
     })
 
+    setReset(true); //Creates a flag which goes down the components to tell SortDisplay to reset the index, and the individual graph components to reset their complete variables.
+    console.log("reset: " +reset)
   }
   //-------------------------------------------------------------------------------
 
@@ -119,7 +121,6 @@ export default function App() {
             graph.graphID !== graphIDToRemove,
         )
     )
-    console.log("remove")
   }
 
 
@@ -130,21 +131,31 @@ export default function App() {
 
   //Sets the sort state of the app scope to: True
   const startSort = () => {
-    setSort(true);
+    if (algorithms.length>0){
+      setSort(true);
+    }
+
   }
 
   //Sets the sort state of the app to: False
   const stopSort = () => {
+    console.log("stop sort")
     setSort(false);
-    alert("stop sort")
   }
 
   //Deletes the algorithms being displayed from the list.
   const clear = () => {
-    console.log("here")
     setSort(false);
     setAlgorithms([]);
+    setReset(true);
   }
+
+  //Once the algorithms have been successfully reset, this flips back the reset variable for the app scope
+  const resetCompleted = () =>{
+    setSort(false);
+    setReset(false);
+  }
+
   //--------------------------------------------------------------------------------
 
 
@@ -162,12 +173,12 @@ export default function App() {
   const togglePlayPause = () => {
     setSort(!sort);
   }
-  //
 
 
   //Work around constructor
   if (data === "Not yet initialised") {
     data = generateData();
+    setReset(false); //Because generateData will set reset to True, to tell children to update, so we reset this to false here.
   }
 
 
@@ -178,12 +189,15 @@ export default function App() {
         <AlgorithmSelector onAddAlgorithm={addAlgorithm}/>
 
         <h1>{"sort: " + sort}</h1>
+        <h2>{"reset: " + reset}</h2>
         <SortDisplay
             sortState={sort}
             startSort={startSort}
             stopSort={stopSort}
             algorithms={algorithms}
             removeGraphCallback={removeGraph}
+            reset = {reset}
+            resetCompletedCallback = {resetCompleted}
         />
 
         <BottomControlbar

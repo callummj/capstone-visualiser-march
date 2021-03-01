@@ -26,6 +26,13 @@ export default function Graph(props) {
     }), [props.index])
 
 
+    //If the props' reset variable is
+    useEffect((()=>{
+        if (props.reset == true){
+            setComplete(false);
+            props.graphResetCompletedCallback();
+        }
+    }),[props.reset])
 
 
     let data = props.steps[index];
@@ -35,11 +42,16 @@ export default function Graph(props) {
     * cause an error. For example: index may be 92, but there are only 82 steps in this graph, if this is the case, this
     * graph must be complete so we can set it to the last instance in its steps list.
     * */
-    if (data == undefined){
+    if (data == undefined && !complete){
         data = steps[steps.length-1]
         setComplete(true);
         props.graphCompletedCallback(props.graphID); //Tell sortDisplay that this algorithm is completed.
+    }else{
+        if (complete){
+            data = steps[steps.length-1]
+        }
     }
+
 
 
 
@@ -69,7 +81,9 @@ export default function Graph(props) {
 
     return(
         <div className={"bars-wrapper"} style={{height: {height}}}>
+            <button className={"close-button"} value={props.title} onClick={()=>props.removeGraph(props.graphID)}>x</button>
             <h1>{props.title}</h1>
+            <h2>{props.reset}</h2>
             <div className={"bars"} style={{height: `${(Math.max(data))}`}}>
                 {bars}
             </div>
