@@ -2,7 +2,7 @@ import React from "react";
 
 
 //TEMP
-
+//Not my code: place holder code.
 function Radixsort(orignalData){
     let data = [...orignalData];
 
@@ -18,6 +18,7 @@ function Radixsort(orignalData){
     let steps = [];
     let focus = [];
 
+    steps.push([[...data], []])
     var maxLength = false
     var placement = 1
 
@@ -44,7 +45,7 @@ function Radixsort(orignalData){
             for (var k = 0; k < buck.length; k++) {
                 data[a] = buck[k]
                 a++
-                steps.push([...data])
+                steps.push([[...data], []])
             }
         }
 

@@ -36,9 +36,9 @@ export default function BottomControlbar(props){
 
             <div id={'speed-controller'}>
                 <h3 id={'speedLabel'}>Speed:</h3>
-                <button onClick={updateSpeed} value={500}>Slow</button>
-                <button onClick={updateSpeed} value={75}>Medium</button>
-                <button onClick={updateSpeed} value={20}>Fast</button>
+                <button onClick={updateSpeed} value={50}>Slow</button>
+                <button onClick={updateSpeed} value={250}>Medium</button>
+                <button onClick={updateSpeed} value={500}>Fast</button>
                 <button onClick={toggleDecoration}>Change decoration</button>
             </div>
             <div id={'play-controller'}>

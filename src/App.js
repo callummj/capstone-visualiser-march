@@ -31,12 +31,14 @@ export default function App() {
   let [algorithms, setAlgorithms] = useState([]); //Stores the objects of the algorithms being displayed
   let [reset, setReset] = useState(false); //A Reset variable, which is used as a flag to pass down to components to tell them to reset their indexes to 0, such as after new data has been generated
   let [finished, setFinished] = useState([]); //Stores the algorithms in order to which they finish to display to the user.
+  let [speed, setSpeed] = useState(75); //Speed Controller, defaults to 75 which is the 'medium' speed. Please See bottombar.js how this is managed.
   //-------------------------------------------------------------------------------
 
   //REF VARS
   //-------------------------------------------------------------------------------
   let graphID = useRef(0); // Used to store the last graph ID given to generate unique Keys among graphs.
   //-------------------------------------------------------------------------------
+
 
 
 
@@ -94,23 +96,27 @@ export default function App() {
 //Takes an algorithm name from the 'Algorithm Selector Component
   const addAlgorithm = (algorithm) => {
 
-    //Creates key using the graphID ref, and increments its value by 1.
-    let key = algorithm + graphID.current;
-    graphID.current = graphID.current + 1;
+    //User should not be able to add algorithms whilst a sort is going on -> This is because of that the index is handled centrally, it would skip steps etc; I tried to make this doable in version 2, but due to the State lifecycle and the design of my app, this is not possible.
+    if (sort != true){
+      //Creates key using the graphID ref, and increments its value by 1.
+      let key = algorithm + graphID.current;
+      graphID.current = graphID.current + 1;
 
-    //Prepares the object to append to the algorithm
-    let algorithmToAdd = {
-      title: algorithm,
-      steps: getSteps(algorithm, [...data]),
-      graphID: key
+      //Prepares the object to append to the algorithm
+      let algorithmToAdd = {
+        title: algorithm,
+        steps: getSteps(algorithm, [...data]),
+        graphID: key
+      }
+
+      //Create a copy of
+      let temp = [...algorithms];
+      temp.push(algorithmToAdd)
+
+      //Finally, append new algorithm to the list
+      setAlgorithms(temp);
+
     }
-
-    //Create a copy of
-    let temp = [...algorithms];
-    temp.push(algorithmToAdd)
-
-    //Finally, append new algorithm to the list
-    setAlgorithms(temp);
 
   }
 
@@ -161,8 +167,8 @@ export default function App() {
 
   //
 
-  const updateSpeed = () => {
-    console.log("update speed")
+  const updateSpeed = (newSpeed) => {
+   setSpeed(newSpeed);
   }
 
 
@@ -198,6 +204,7 @@ export default function App() {
             removeGraphCallback={removeGraph}
             reset = {reset}
             resetCompletedCallback = {resetCompleted}
+            speed = {speed}
         />
 
         <BottomControlbar

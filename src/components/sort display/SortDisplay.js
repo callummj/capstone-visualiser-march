@@ -55,35 +55,51 @@ export default function SortDisplay(props){
     See docs:
     https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
 
+
+    Speed controlling/throttling requestAnimation frame:
+    https://stackoverflow.com/a/19772220
+
+
+
+
      */
 
+
+
+    let lastTimestamp = 0;
+
+
+    const animate = timestamp => {
+
+        requestRef.current = requestAnimationFrame(animate);
+        if (timestamp - lastTimestamp < 1000 / props.speed) return;
+
+        if (previousTimeRef.current != undefined) {
+            if (!complete.current){
+                const deltaTime = timestamp - previousTimeRef.current; // https://answers.unity.com/questions/1368827/what-exactly-timedeltatime-is.html The time it took for the application to process the previos frame
+                setIndex(prevIndex => (prevIndex + 1));
+            }
+
+        }
+        previousTimeRef.current = timestamp;
+
+        lastTimestamp = timestamp;
+
+
+
+       // requestRef.current = requestAnimationFrame(() => animate(50000));
+    }
 
     //Source: https://css-tricks.com/using-requestanimationframe-with-react-hooks/
     const requestRef = useRef();
     const previousTimeRef = useRef();
     useEffect(() => {
-        const animate = time => {
-            if (previousTimeRef.current != undefined) {
-                if (!complete.current){
-                    console.log("increment: " + complete.current)
-                    const deltaTime = time - previousTimeRef.current;
-                    setIndex(prevIndex => (prevIndex + 1));
-                }
-
-            }
-            previousTimeRef.current = time;
-            requestRef.current = requestAnimationFrame(animate);
-        }
-
         if (props.sortState == true && !complete.current){
-            requestRef.current = requestAnimationFrame(animate);
+            animate();
         }else if (props.sortState == false){
-            //setSort(false); //If the app's sort controller is false, but the sortDisplay's sort controller is true, bring it into line.
             props.stopSort();
-
         }
 
-        console.log("cancel animation")
         return () => cancelAnimationFrame(requestRef.current);
 
     }, [props.sortState]); // <---Will only invoke when the sort state has changed
@@ -109,10 +125,7 @@ export default function SortDisplay(props){
             setIndex(0);
             setReset(true);
             props.stopSort();
-            //setSort(false);
-
             //This will reuse the resetCompleted callback, but in this instance, it is being used for when the user clicks 'clear'.
-            console.log("alg length: " + props.algorithms.length);
             if (props.algorithms.length == 0){
                 props.resetCompletedCallback();
             }
@@ -153,8 +166,6 @@ export default function SortDisplay(props){
             resetTracker.current = temp;
         }
         setReset(false);
-
-
     }
 
 
